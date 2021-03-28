@@ -1,0 +1,59 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/carousel/one.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/carousel/two.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/carousel/three.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/carousel/four.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/carousel/five.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<br>
+<section class="products">
+{% for product in products %}
+<div class="product__card">
+  <img class="product__card__img" src="{{product.product_image}}" width="100%" height="70%" alt="Card Image">
+  <div class="product__card__body">
+    <div class="product__details">
+    <h5 class="card__title">{{ product.product_title }}</h5>
+    <p class="card__text">${{ product.product_price }}</p>
+    <div class="flex">
+		<a class="btn btn-outline-danger add-btn" href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+		<a class="btn btn-outline-secondary" href="#">View</a></div>
+    </div>
+  </div>
+  </div>
+{%endfor%}
+</section>
+  
+
+{% endblock content %}
